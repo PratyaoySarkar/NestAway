@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@theme {
+  --color-primary: #f5385d;
+  --color-secondary: #C62041;
+}
+
+input[type="email"],input[type="password"], input[type="text"], input[type="number"] {
+  @apply w-full border border-gray-400 my-2 py-2 px-3 rounded-2xl;
+}
+
+button.primary {
+  @apply bg-primary p-2 text-white rounded-2xl;
+}
