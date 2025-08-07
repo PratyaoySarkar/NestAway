@@ -2,12 +2,17 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const Places = require('./DBModels/Places');
 const User = require('./DBModels/User'); // Import UserModel
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config(); // Load environment variables from .env file
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());//To parse JSON bodies
 app.use(cookieParser()); // To parse cookies
 app.use(cors({
@@ -74,4 +79,80 @@ app.post('/logout', (req, res) => {
     res.cookie('token', '').json(true); // Clear the token cookie
 });
 
+const uploadMiddleware = multer({ dest: 'uploads/' }); // Set the destination for uploaded files
+app.post('/upload', uploadMiddleware.array('photos', 100), (req, res) =>{
+    const upLoadedFiles = [];
+    for(let i=0; i<req.files.length; i++){
+        const { path: tempPath, originalname } = req.files[i];
+        const ext = originalname.split('.').pop();
+        const newPath = tempPath + '.' + ext;
+        fs.renameSync(tempPath, newPath);
+        upLoadedFiles.push(path.basename(newPath)); 
+    }
+    res.json(upLoadedFiles);
+})
+
+app.post('/places', (req, res) => {
+    const { token } = req.cookies;
+    const { title, address, description,  
+        perks, addedPhotos, extraInfo, 
+        checkIn, checkOut, guests } = req.body
+    if(token){
+        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
+            if(err) throw err;
+            const placeDoc = await Places.create({
+                owner: user.id,
+                title, address, description,  
+                perks, photos:addedPhotos, extraInfo, 
+                checkIn, checkOut, guests
+            });
+            res.json(placeDoc);
+        })
+    }else{
+        return res.status(401).json({message: 'No token provided'});
+    }
+})
+
+app.get('/places', (req, res) => {
+    const { token } = req.cookies;
+    if(token){
+        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
+            if(err) throw err;
+            const { id } = user;
+            res.json(await Places.find({owner: id}))
+        })
+    }else{
+        return res.status(401).json({message: 'No token provided'});
+    }
+})
+
+app.get('/places/:id', async (req, res) =>{
+    const {id} =  req.params;
+    res.json(await Places.findById(id));
+} )
+
+app.put('/places', async(req, res) =>{
+    const { token } = req.cookies;
+    const { id, title, address, description,  
+        perks, addedPhotos, extraInfo, 
+        checkIn, checkOut, guests } = req.body;
+    if(token){
+        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
+            if(err) throw err;
+            const placeDoc = await Places.findById(id);
+            if(user.id === placeDoc.owner.toString()){
+                placeDoc.set({
+                    title, address, description,  
+                    perks, photos:addedPhotos, extraInfo, 
+                    checkIn, checkOut, guests
+                });
+                await placeDoc.save();
+                res.json('ok');
+            }
+        })
+    }else{
+        return res.status(401).json({message: 'No token provided'});
+    }
+    
+})
 //app.listen(4000);
