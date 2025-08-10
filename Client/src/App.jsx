@@ -13,7 +13,7 @@ import SinglePlace from './pages/SinglePlace'
 import BookingPage from './pages/BookingsPage'
 import SingleBookingPage from './pages/SingleBookingPage'
 
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://nestaway-server.onrender.com';
 axios.defaults.withCredentials = true; // Enable sending cookies with requests
 
 function App() {

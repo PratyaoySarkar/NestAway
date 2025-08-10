@@ -21,6 +21,8 @@ export default function PlacesFormPage(){
     const [price, setPrice] = useState(100);
     const [redirect, setRedirect] = useState(false);
 
+    const backendUrl = 'https://nestaway-server.onrender.com';
+
     useEffect(() =>{
         if(!id){
             return;
@@ -132,7 +134,7 @@ export default function PlacesFormPage(){
                     {addedPhotos.map((photo, index) =>(
                         <div key={index} className="relative h-32 flex">
                             <img
-                                src = {`http://localhost:4000/uploads/${photo}`}
+                                src = {`${backendUrl}/uploads/${photo}`}
                                 alt = {`Uploaded ${photo}`}
                                 className="w-full h-auto rounded-2xl object-cover"
                             />

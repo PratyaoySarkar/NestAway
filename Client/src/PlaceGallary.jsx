@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function PlaceGallery({place}){
     const [showAllPhotos, setShowAllPhotos] = useState(false);
+    const backendUrl = 'https://nestaway-server.onrender.com';
 
     if(showAllPhotos){
         return (
@@ -15,7 +16,7 @@ export default function PlaceGallery({place}){
                     </button>
                     {place?.photos?.length > 0 && place.photos.map(photo => (
                         <div className="my-4 bg-white py-4 px-4 rounded-2xl text-shadow-lg">
-                            <img src={'http://localhost:4000/uploads/'+photo} alt="" />
+                            <img src={`${backendUrl}/uploads/`+photo} alt="" />
                         </div>
                     ))}  
                 </div>
@@ -28,15 +29,15 @@ export default function PlaceGallery({place}){
             <div className="overeflow-hidden">
                 {place.photos?.[0] && (
                     <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" 
-                    src={'http://localhost:4000/uploads/' + place.photos[0]} alt=""/>
+                    src={`${backendUrl}/uploads/` + place.photos[0]} alt=""/>
                 )}
             </div>
             <div className="grid gap-2 grid-rows-2 h-[400px]">
                 {place.photos?.[1] && (
-                    <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" src={'http://localhost:4000/uploads/' + place.photos[1]} alt=""/>
+                    <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" src={`${backendUrl}/uploads/` + place.photos[1]} alt=""/>
                 )}
                 {place.photos?.[2] && (
-                    <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" src={'http://localhost:4000/uploads/' + place.photos[2]} alt=""/>
+                    <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" src={`${backendUrl}/uploads/` + place.photos[2]} alt=""/>
                 )}
             </div>
             <button onClick={() => setShowAllPhotos(true)} className="absolute bottom-2 right-2 bg-white rounded-lg px-2 py-1 font-semibold">See more...</button>

@@ -14,6 +14,8 @@ export default function BookingPage(){
         })
     }, []);
 
+    const backendUrl = 'https://nestaway-server.onrender.com';
+
     return (
         <div className="flex gap-8 mt-8">
             <AccountNav />
@@ -23,7 +25,7 @@ export default function BookingPage(){
                         <Link to={`/account/bookings/${booking._id}`} className="flex gap-4 bg-gray-100 rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-200 mb-6">
                             <div className="w-56 h-40 flex-shrink-0">
                                 {booking.place.photos.length > 0 && (
-                                    <img className="object-cover w-full h-full" src={'http://localhost:4000/uploads/' + booking.place.photos[0]} alt=""/>
+                                    <img className="object-cover w-full h-full" src={`${backendUrl}/uploads/` + booking.place.photos[0]} alt=""/>
                                 )}
                             </div>
                             <div className="py-4 pr-5 flex flex-col justify-between flex-grow">

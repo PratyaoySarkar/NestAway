@@ -8,6 +8,7 @@ import AccountNav from "../AccountNav";
 
 export default function PlacesPage(){
     const [places, setPlaces] = useState([]);
+    const backendUrl = 'https://nestaway-server.onrender.com';
     useEffect(() => {
         axios.get('/user-places').then(({data}) => {
             setPlaces(data);
@@ -26,7 +27,7 @@ export default function PlacesPage(){
                         <Link to={'/account/places/'+places._id} className="flex cursor-pointer bg-gray-100 rounded-2xl p-2 gap-4">
                             <div className="flex w-32 h-32 grow rounded-2xl shrink-0 bg-gray-300">
                                 {places.photos.length > 0 && (
-                                <img className="object-cover rounded-2xl" src={'http://localhost:4000/uploads/' + places.photos[0]} alt=""/>
+                                <img className="object-cover rounded-2xl" src={`${backendUrl}/uploads/` + places.photos[0]} alt=""/>
                             )}
                             </div>
                             <div className="grow-0 shrink">
