@@ -88,7 +88,12 @@ app.get('/profile', authMiddleware, async (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-    res.cookie('token', '').json(true); // Clear the token cookie
+    res.cookie('token', '', {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none',
+        expires: new Date(0) // Expire immediately
+    }).json({ message: 'Logged out' });
 });
 
 const uploadMiddleware = multer({ dest: 'uploads/' }); // Set the destination for uploaded files
