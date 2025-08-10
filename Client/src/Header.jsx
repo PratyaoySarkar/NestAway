@@ -8,7 +8,7 @@ export default function Header() {
         <div>
             <header className='flex justify-between'>
                 <Link to={'/'} className='flex items-center gap-2'>
-                    <img src='./public/NestAwayLogo.png' className='size-15' alt='NestAway Logo' />
+                    <img src='/NestAwayLogo.png' className='size-15' alt='NestAway Logo' />
                     <span className='font-bold text-xl text-primary'>nestAway</span>
                 </Link>
                 <div className='flex font-semibold border border-gray-300 rounded-full py-1 px-4 items-center gap-4 shadow-md shadow-gray-300'>
