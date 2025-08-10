@@ -20,11 +20,12 @@ app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173',
 }));
+const port = process.env.PORT || 4000;
 
 async function connectDB(){
     await mongoose.connect(process.env.MONGO_URL);
     console.log("Connected to database");
-    app.listen(4000);
+    app.listen(port);
     console.log("Server is running on port 4000");
 }
 connectDB();
