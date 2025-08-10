@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const Booking = require('./DBModels/Bookings'); // Import BookingModel
 require('dotenv').config(); // Load environment variables from .env file
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -96,7 +97,7 @@ app.post('/places', (req, res) => {
     const { token } = req.cookies;
     const { title, address, description,  
         perks, addedPhotos, extraInfo, 
-        checkIn, checkOut, guests } = req.body
+        checkIn, checkOut, guests, price } = req.body
     if(token){
         jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
             if(err) throw err;
@@ -104,7 +105,7 @@ app.post('/places', (req, res) => {
                 owner: user.id,
                 title, address, description,  
                 perks, photos:addedPhotos, extraInfo, 
-                checkIn, checkOut, guests
+                checkIn, checkOut, maxGuests: guests, price
             });
             res.json(placeDoc);
         })
@@ -113,7 +114,7 @@ app.post('/places', (req, res) => {
     }
 })
 
-app.get('/places', (req, res) => {
+app.get('/user-places', (req, res) => {
     const { token } = req.cookies;
     if(token){
         jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
@@ -135,7 +136,7 @@ app.put('/places', async(req, res) =>{
     const { token } = req.cookies;
     const { id, title, address, description,  
         perks, addedPhotos, extraInfo, 
-        checkIn, checkOut, guests } = req.body;
+        checkIn, checkOut, guests, price } = req.body;
     if(token){
         jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
             if(err) throw err;
@@ -144,7 +145,7 @@ app.put('/places', async(req, res) =>{
                 placeDoc.set({
                     title, address, description,  
                     perks, photos:addedPhotos, extraInfo, 
-                    checkIn, checkOut, guests
+                    checkIn, checkOut, maxGuests: guests, price
                 });
                 await placeDoc.save();
                 res.json('ok');
@@ -155,4 +156,40 @@ app.put('/places', async(req, res) =>{
     }
     
 })
+
+app.get('/places', async (req, res) =>{
+    res.json(await Places.find());
+})
+
+app.post('/bookings', async (req, res) => {
+    const { token } = req.cookies;
+    if(token){
+        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
+            if(err) throw err;
+            const userData = user; 
+            const { checkIn, checkOut, numOfGuests, place, name, phone, price } = req.body;
+            Booking.create({
+                user: userData.id,
+                checkIn, checkOut, numOfGuests, place, name, phone, price
+            }).then((doc) => {
+                res.json(doc);
+            }).catch((err) => { 
+                throw err;
+            })
+        })
+    }
+    
+});
+
+app.get('/bookings', async(req, res) => {
+    const { token } = req.cookies;
+    if(token){
+        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
+            if(err) throw err;
+            const userData = user;
+            res.json(await Booking.find({user: userData.id}).populate('place')); 
+        })
+    }
+})
+
 //app.listen(4000);
