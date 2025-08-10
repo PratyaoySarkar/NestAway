@@ -31,6 +31,20 @@ async function connectDB(){
 connectDB();
 //const userSecret = bcrypt.genSaltSync(10);
 
+function authMiddleware(req, res, next) {
+    const { token } = req.cookies;
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided' });
+    }
+    jwt.verify(token, process.env.USER_SECRET, {}, (err, user) => {
+        if (err) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+        req.user = user;
+        next();
+    });
+}
+
 app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     const hashPassword = await bcrypt.hash(password, 10);
@@ -64,17 +78,9 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.get('/profile', (req, res) => {
-    const { token } = req.cookies;
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const {name, email, _id} = await User.findById(user.id);
-            res.json({name, email, _id});
-        })
-    }else{
-        return res.status(401).json({message: 'No token provided'});
-    }
+app.get('/profile', authMiddleware, async (req, res) => {
+    const {name, email, _id} = await User.findById(req.user.id);
+    res.json({name, email, _id});
 });
 
 app.post('/logout', (req, res) => {
@@ -94,38 +100,22 @@ app.post('/upload', uploadMiddleware.array('photos', 100), (req, res) =>{
     res.json(upLoadedFiles);
 })
 
-app.post('/places', (req, res) => {
-    const { token } = req.cookies;
+app.post('/places', authMiddleware, async (req, res) => {
     const { title, address, description,  
         perks, addedPhotos, extraInfo, 
-        checkIn, checkOut, guests, price } = req.body
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const placeDoc = await Places.create({
-                owner: user.id,
-                title, address, description,  
-                perks, photos:addedPhotos, extraInfo, 
-                checkIn, checkOut, maxGuests: guests, price
-            });
-            res.json(placeDoc);
-        })
-    }else{
-        return res.status(401).json({message: 'No token provided'});
-    }
+        checkIn, checkOut, guests, price } = req.body;
+    
+    const placeDoc = await Places.create({
+        owner: req.user.id,
+        title, address, description,  
+        perks, photos:addedPhotos, extraInfo, 
+        checkIn, checkOut, maxGuests: guests, price
+    });
 })
 
-app.get('/user-places', (req, res) => {
-    const { token } = req.cookies;
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const { id } = user;
-            res.json(await Places.find({owner: id}))
-        })
-    }else{
-        return res.status(401).json({message: 'No token provided'});
-    }
+app.get('/user-places', authMiddleware, async (req, res) => {
+    const { id } = req.user;
+    res.json(await Places.find({ owner: id }));
 })
 
 app.get('/places/:id', async (req, res) =>{
@@ -133,63 +123,56 @@ app.get('/places/:id', async (req, res) =>{
     res.json(await Places.findById(id));
 } )
 
-app.put('/places', async(req, res) =>{
-    const { token } = req.cookies;
+app.put('/places', authMiddleware, async(req, res) =>{
     const { id, title, address, description,  
         perks, addedPhotos, extraInfo, 
         checkIn, checkOut, guests, price } = req.body;
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const placeDoc = await Places.findById(id);
-            if(user.id === placeDoc.owner.toString()){
-                placeDoc.set({
-                    title, address, description,  
-                    perks, photos:addedPhotos, extraInfo, 
-                    checkIn, checkOut, maxGuests: guests, price
-                });
-                await placeDoc.save();
-                res.json('ok');
-            }
-        })
-    }else{
-        return res.status(401).json({message: 'No token provided'});
+    const placeDoc = await Places.findById(id);
+    if (req.user.id === placeDoc.owner.toString()) {
+        placeDoc.set({
+            title, 
+            address, 
+            description,  
+            perks, 
+            photos: addedPhotos, 
+            extraInfo, 
+            checkIn, 
+            checkOut, 
+            maxGuests: guests, 
+            price
+        });
+        await placeDoc.save();
+        res.json('ok');
+    } else {
+        res.status(403).json({ message: 'You are not the owner of this place' });
     }
-    
 })
 
 app.get('/places', async (req, res) =>{
     res.json(await Places.find());
 })
 
-app.post('/bookings', async (req, res) => {
-    const { token } = req.cookies;
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const userData = user; 
-            const { checkIn, checkOut, numOfGuests, place, name, phone, price } = req.body;
-            Booking.create({
-                user: userData.id,
-                checkIn, checkOut, numOfGuests, place, name, phone, price
-            }).then((doc) => {
-                res.json(doc);
-            }).catch((err) => { 
-                throw err;
-            })
-        })
+app.post('/bookings', authMiddleware, async (req, res) => {
+    const { checkIn, checkOut, numOfGuests, place, name, phone, price } = req.body;
+    try {
+        const bookingDoc = await Booking.create({
+            user: req.user.id,
+            checkIn, checkOut, numOfGuests, place, name, phone, price
+        });
+        res.json(bookingDoc);
+    } catch (err) {
+        // Handle any database errors
+        res.status(500).json({ message: 'Failed to create booking', error: err.message });
     }
-    
 });
 
-app.get('/bookings', async(req, res) => {
+app.get('/bookings', authMiddleware, async(req, res) => {
     const { token } = req.cookies;
-    if(token){
-        jwt.verify(token, process.env.USER_SECRET, {}, async (err, user) =>{
-            if(err) throw err;
-            const userData = user;
-            res.json(await Booking.find({user: userData.id}).populate('place')); 
-        })
+    try {
+        const bookings = await Booking.find({user: req.user.id}).populate('place');
+        res.json(bookings);
+    } catch (err) {
+        res.status(500).json({ message: 'Failed to retrieve bookings', error: err.message });
     }
 })
 
