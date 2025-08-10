@@ -18,7 +18,7 @@ app.use(express.json());//To parse JSON bodies
 app.use(cookieParser()); // To parse cookies
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:5173',
+    origin: 'https://nestawayhotels.onrender.com', //Updated frontend URL
 }));
 const port = process.env.PORT || 4000;
 
