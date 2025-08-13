@@ -13,9 +13,9 @@ export default function IndexPage() {
 
     const backendUrl = 'https://nestaway-server.onrender.com';
     return (
-        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4 hover:scale-[1.01] transition-all duration-200">
+        <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
            {places.length > 0 && places.map(place => (
-            <Link to={'/places/'+place._id}>
+            <Link to={'/places/'+place._id} className="hover:shadow-md hover:scale-[1.01] transition-all duration-200">
                 {place.photos?.[0] && (
                     <div className="aspect-square mb-2 rounded-2xl overflow-hidden">
                         <img className="w-full h-full object-cover" src={`${backendUrl}/uploads/`+place.photos?.[0]} alt="" />
