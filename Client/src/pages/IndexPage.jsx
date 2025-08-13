@@ -15,14 +15,14 @@ export default function IndexPage() {
     return (
         <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
            {places.length > 0 && places.map(place => (
-            <Link to={'/places/'+place._id} className="hover:shadow-md hover:scale-[1.01] transition-all duration-200">
+            <Link to={'/places/'+place._id} className="group">
                 {place.photos?.[0] && (
-                    <div className="aspect-square mb-2 rounded-2xl overflow-hidden">
+                    <div className="aspect-square mb-2 rounded-2xl overflow-hidden transition-transform duration-200 group-hover:scale-105">
                         <img className="w-full h-full object-cover" src={`${backendUrl}/uploads/`+place.photos?.[0]} alt="" />
                     </div>
                     
                 )}
-                <h3 className="font-semibold truncate leading-4">{place.title}</h3>
+                <h3 className="font-semibold truncate leading-4 ransition-colors duration-200 group-hover:text-blue-600">{place.title}</h3>
                 <h2 className="font-semibold text-sm">{place.address}</h2>
                 <div className="flex -gap-0.5 text-sm font-bold text-gray-500 mt-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
