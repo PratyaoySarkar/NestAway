@@ -17,7 +17,10 @@ export default function IndexPage() {
            {places.length > 0 && places.map(place => (
             <Link to={'/places/'+place._id}>
                 {place.photos?.[0] && (
-                    <img className="rounded-2xl mb-2 object-cover" src={`${backendUrl}/uploads/`+place.photos?.[0]} alt="" />
+                    <div className="aspect-square mb-2 rounded-2xl overflow-hidden">
+                        <img className="w-full h-full object-cover" src={`${backendUrl}/uploads/`+place.photos?.[0]} alt="" />
+                    </div>
+                    
                 )}
                 <h3 className="font-semibold truncate leading-4">{place.title}</h3>
                 <h2 className="font-semibold text-sm">{place.address}</h2>
