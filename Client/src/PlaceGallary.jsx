@@ -26,7 +26,7 @@ export default function PlaceGallery({place}){
     }
     return(
         <div className="grid gap-2 grid-cols-[2fr_1fr] w-full max-w-5xl h-[400px] relative mt-8">
-            <div className="overeflow-hidden">
+            <div className="overflow-hidden">
                 {place.photos?.[0] && (
                     <img onClick={() => setShowAllPhotos(true)} className="object-cover w-full h-full rounded-lg" 
                     src={`${backendUrl}/uploads/` + place.photos[0]} alt=""/>
