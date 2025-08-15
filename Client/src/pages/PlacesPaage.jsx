@@ -16,14 +16,12 @@ export default function PlacesPage(){
         });
     }, []);
 
+    useEffect(() => {
+        document.title = "NestAway | My Places";
+    }, []);
+
     return(
-        <html>
-            <head>
-                <title>My Places</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            </head>
-            <body>
-                <div className="flex gap-8 mt-8">
+            <div className="flex gap-8 mt-8">
             <AccountNav />
             <div className="flex flex-col gap-4">
                 <div>
@@ -59,8 +57,6 @@ export default function PlacesPage(){
             </div>
             
         </div>
-            </body>
-        </html>
-        
+
     )
 }
