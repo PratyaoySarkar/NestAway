@@ -31,11 +31,12 @@ export default function PlacesPage(){
                                 <img className="object-cover rounded-2xl" src={`${backendUrl}/uploads/` + places.photos[0]} alt=""/>
                             )}
                             </div>
-                            <div className="flex flex-col justify-between flex-1">
-                                <div>
+                            <div className="flex justify-between items-stretch">
+                                <div className="flex flex-col justify-start">
                                     <h2 className="text-xl font-semibold">{places.title}</h2>
                                     <p className="text-sm mt-2 text-gray-700">{places.description}</p>
                                 </div>
+                                <div className="flex flex-col justify-end"></div>
                                 <button
                                     onClick={() => navigate(`/account/places/${places._id}`)}
                                     className="self-start mt-3 bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-secondary hover:shadow-lg hover:scale-105 transition-all duration-200"
