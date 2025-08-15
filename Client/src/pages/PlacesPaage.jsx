@@ -36,13 +36,15 @@ export default function PlacesPage(){
                                     <h2 className="text-xl font-semibold">{places.title}</h2>
                                     <p className="text-sm mt-2 text-gray-700">{places.description}</p>
                                 </div>
-                                <div className="flex flex-col justify-end"></div>
-                                <button
+                                <div className="flex flex-col justify-end">
+                                    <button
                                     onClick={() => navigate(`/account/places/${places._id}`)}
                                     className="self-start mt-3 bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-secondary hover:shadow-lg hover:scale-105 transition-all duration-200"
                                 >
                                     Edit 
                                 </button>
+                                </div>
+                                
                             </div>
                             
                         </div>
