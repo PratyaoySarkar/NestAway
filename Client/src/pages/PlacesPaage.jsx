@@ -25,13 +25,13 @@ export default function PlacesPage(){
                 </div>
                 <div className="mt-4 mb-4 ">
                     {places.length > 0 && places.map(places => (
-                        <div className="flex cursor-pointer bg-gray-100 rounded-2xl p-4 gap-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div className="flex cursor-pointer bg-gray-100 rounded-2xl p-4 gap-4 shadow-sm hover:shadow-lg hover:scale-[1.01] transition-all duration-200 mb-6">
                             <div className="flex w-32 h-32 grow rounded-2xl shrink-0 bg-gray-300 overflow-hidden">
                                 {places.photos.length > 0 && (
                                 <img className="object-cover rounded-2xl" src={`${backendUrl}/uploads/` + places.photos[0]} alt=""/>
                             )}
                             </div>
-                            <div className="flex justify-between items-stretch">
+                            <div className="flex justify-between">
                                 <div className="flex flex-col justify-start">
                                     <h2 className="text-xl font-semibold">{places.title}</h2>
                                     <p className="text-sm mt-2 text-gray-700">{places.description}</p>
