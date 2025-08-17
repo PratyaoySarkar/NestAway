@@ -22,7 +22,7 @@ export default function IndexPage() {
                     </div>
                     
                 )}
-                <h3 className="font-semibold truncate leading-4 ransition-colors duration-200 group-hover:text-blue-600">{place.title}</h3>
+                <h3 className="font-semibold leading-4 transition-colors duration-200 group-hover:text-secondary">{place.title}</h3>
                 <h2 className="font-semibold text-sm">{place.address}</h2>
                 <div className="flex -gap-0.5 text-sm font-bold text-gray-500 mt-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
