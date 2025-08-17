@@ -6,7 +6,7 @@ export default function Header() {
     const { user } = useContext(UserContext); // Access user data from UserContext
     const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <header className='flex justify-between items-center px-6 py-4 shadow-md bg-gray-100 sticky top-0 z-50'>
+        <header className='flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-50'>
             <Link to={'/'} className='flex items-center gap-2'>
                 <img src='/NestAwayLogo.png' className='size-15 object-contain' alt='NestAway Logo' />
                 {/* The text will be hodden on mobile */}
