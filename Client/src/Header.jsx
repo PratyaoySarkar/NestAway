@@ -42,8 +42,8 @@ export default function Header() {
                 )}
                 {/* Dropdown */}
                 {menuOpen && (
-                    <div className="fixed inset-0 right-0 bg-primary bg-opacity-40 z-50 flex">
-                        <div className="w-64 bg-primary text-white h-full shadow-lg relative p-6 flex flex-col">
+                    <div className="fixed inset-0 right-0 bg-primary bg-opacity-40 z-50 flex justify-end">
+                        <div className="w-64 bg-primary text-white h-auto shadow-lg relative p-6 flex flex-col mt-16 rounded-l-xl">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300"
