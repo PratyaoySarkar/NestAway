@@ -32,33 +32,66 @@ export default function Header() {
                     </svg>
                 </div>
                 {/* User icon and name */}
-                <button onClick={() => setMenuOpen(!menuOpen)}
-                    to={user?'/account':'/login'} className=' bg-gray-200 rounded-full hover:bg-gray-300 transition-colors p-2'>
+                {!menuOpen && (
+                    <button onClick={() => setMenuOpen(true)}
+                    className=' bg-gray-200 rounded-full hover:bg-gray-300 transition-colors p-2'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
                 </button>
+                )}
                 {/* Dropdown */}
                 {menuOpen && (
-                    <div className="absoute top-12 right-0 bg-primary text-white shadow-lg w-40 py-2 z-50 border">
-                        {user ? (
-                            <>
-                            <h2>Welcome {user.name}</h2>
-                            <Link to="/account" className="block px-4 py-2 hover:bg-secondary">
-                                My Profile
-                            </Link>
-                            <Link to="" className="block px-4 py-2 hover:bg-secondary">
-                                About
-                            </Link>
-                            <button className="w-full text-left px-4 py-2 text-white hover:bg-secondary">
-                                Logout
+                    <div className="fixed inset-0 right-0 bg-primary bg-opacity-40 z-50 flex">
+                        <div className="w-64 bg-primary text-white h-full shadow-lg relative p-6 flex flex-col">
+                            <button
+                                onClick={() => setMenuOpen(false)}
+                                className="absolute top-4 right-4 text-white hover:text-gray-300"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+
                             </button>
-                            </>
-                        ) : (
-                            <Link to="/login" className="block px-4 py-2 hover:bg-secondary">
-                                Login
-                            </Link>
-                        )}
+                            <div className="mt-12">
+                                {user ? (
+                                <>
+                                    <h2 className="text-lg font-semibold mb-4">
+                                    Welcome {user.name}
+                                    </h2>
+                                    <Link
+                                    to="/account"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 rounded hover:bg-secondary"
+                                    >
+                                    My Profile
+                                    </Link>
+                                    <Link
+                                    to="/about"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 rounded hover:bg-secondary"
+                                    >
+                                    About
+                                    </Link>
+                                    <button className="w-full text-left px-4 py-2 hover:bg-secondary">
+                                    Logout
+                                    </button>
+                                </>
+                                ) : (
+                                <Link
+                                    to="/login"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="block px-4 py-2 hover:bg-secondary"
+                                >
+                                    Login
+                                </Link>
+                                )}
+                            </div>
+                        </div>
+                        <div
+                            className="flex-1"
+                            onClick={() => setMenuOpen(false)}>
+                        </div>
                     </div>
                 )}
             </div>
