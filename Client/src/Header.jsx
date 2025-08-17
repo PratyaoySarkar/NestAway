@@ -43,7 +43,7 @@ export default function Header() {
                 {/* Dropdown */}
                 {menuOpen && (
                     <div>
-                        <div className="fixed top-0 right-0 w-64 h-full bg-primary text-white shadow-lg z-50 flex flex-col p-6">
+                        <div className="fixed top-0 right-0 w-64 h-auto bg-primary text-white shadow-lg z-50 flex flex-col p-6">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300"
