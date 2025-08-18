@@ -62,14 +62,14 @@ export default function Header() {
                                     <Link
                                     to="/account"
                                     onClick={() => setMenuOpen(false)}
-                                    className="w-full px-4 py-2 rounded hover:bg-secondary"
+                                    className="block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     My Profile
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="w-full px-4 py-2 rounded hover:bg-secondary"
+                                    className="block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     About
                                     </Link>
@@ -81,7 +81,7 @@ export default function Header() {
                                 <Link
                                     to="/login"
                                     onClick={() => setMenuOpen(false)}
-                                    className="px-4 py-2 rounded hover:bg-secondary"
+                                    className="block px-4 py-2 rounded hover:bg-secondary"
                                 >
                                     Login
                                 </Link>
