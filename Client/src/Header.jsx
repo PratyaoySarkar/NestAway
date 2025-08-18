@@ -6,7 +6,7 @@ export default function Header() {
     const { user } = useContext(UserContext); // Access user data from UserContext
     const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <header className='flex justify-between items-center px-6 py-4 shadow-md bg-white sticky top-0 z-50'>
+        <header className='flex justify-between items-center px-6 py-6 shadow-md bg-white sticky top-0 z-50'>
             <Link to={'/'} className='flex items-center gap-2'>
                 <img src='/NestAwayLogo.png' className='size-15 object-contain' alt='NestAway Logo' />
                 {/* The text will be hodden on mobile */}
@@ -40,10 +40,10 @@ export default function Header() {
                     </svg>
                 </button>
                 )}
-                {/* Dropdown */}
+                {/* Sidebar */}
                 {menuOpen && (
                     <div>
-                        <div className="fixed top-0 right-0 w-64 h-auto bg-primary text-white shadow-lg z-50 flex flex-col p-6">
+                        <div className="fixed top-6 right-6 w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-2xl">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300"
