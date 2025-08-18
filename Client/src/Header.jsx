@@ -53,7 +53,7 @@ export default function Header() {
 </svg>
 
                             </button>
-                            <div>
+                            <div className="mt-6">
                                 {user ? (
                                 <>
                                     <h2 className="text-lg font-semibold mb-4">
@@ -62,18 +62,18 @@ export default function Header() {
                                     <Link
                                     to="/account"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block py-2 rounded hover:bg-secondary"
+                                    className="w-full px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     My Profile
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block py-2 rounded hover:bg-secondary"
+                                    className="w-full px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     About
                                     </Link>
-                                    <button className="w-full text-left py-2 hover:bg-secondary">
+                                    <button className="w-full rounded text-left px-4 py-2 hover:bg-secondary">
                                     Logout
                                     </button>
                                 </>
@@ -81,7 +81,7 @@ export default function Header() {
                                 <Link
                                     to="/login"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block py-2 hover:bg-secondary"
+                                    className="px-4 py-2 rounded hover:bg-secondary"
                                 >
                                     Login
                                 </Link>
