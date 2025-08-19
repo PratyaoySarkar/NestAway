@@ -7,10 +7,10 @@ import { RecoilRoot } from 'recoil'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <RecoilRoot>
+    <RecoilRoot>
+      <BrowserRouter>
         <App />
-      </RecoilRoot>
-    </BrowserRouter>
+      </BrowserRouter>
+    </RecoilRoot>
   </StrictMode>,
 )

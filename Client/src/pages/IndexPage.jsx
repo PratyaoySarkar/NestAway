@@ -63,7 +63,7 @@ export default function IndexPage() {
                     <p>We couldn't load the places. Please try again later.</p>
                 </div>
             );
-    }
-    
-    
+        default:
+            return null;
+    }    
 }
