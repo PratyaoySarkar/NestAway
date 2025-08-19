@@ -180,7 +180,7 @@ export default function PlacesFormPage(){
                         <input type="number" value={price} onChange={ev => setPrice(parseInt(ev.target.value, 10) || 100)} placeholder="Price" />
                     </div>
                 </div>
-                <button className="w-full mt-4 px-4 py-2 bg-primary font-bold text-white rounded-full cursor-pointer">Save</button>
+                <button onClick={savePlace} className="w-full mt-4 px-4 py-2 bg-primary font-bold text-white rounded-full cursor-pointer">Save</button>
             </form>
         </div>
     )
