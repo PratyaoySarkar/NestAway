@@ -8,7 +8,7 @@ import SkeletonLoader from "../SkeletonLoader";
 
 export default function IndexPage() {
     const backendUrl = 'https://nestaway-server.onrender.com';
-    const placeLoadable = useRecoilValueLoadable(placesSelector);
+    const placesLoadable = useRecoilValueLoadable(placesSelector);
     // const [places, setPlaces] = useState([]);
     // useEffect(() =>{
     //     axios.get('/places').then(response => {
@@ -20,7 +20,7 @@ export default function IndexPage() {
         Array.from({ length: 8 }).map((_, index) => <SkeletonLoader key={index} />)
     );
 
-    switch (placeLoadable.state){
+    switch (placesLoadable.state){
         case 'loading':
             return (
                 <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
