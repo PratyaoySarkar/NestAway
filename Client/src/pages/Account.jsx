@@ -36,7 +36,7 @@ export default function AccountPage(){
     }
     return(
         <div className="flex mt-8 gap-8">
-            <AccountNav />
+            <AccountNav userEmail={user.email}/>
             { subpage === 'profile' && (
                 <div className="w-96 mt-8 ml-16">
                     <h2 className="text-2xl font-semibold mb-4">Profile</h2>

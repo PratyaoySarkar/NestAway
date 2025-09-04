@@ -34,7 +34,7 @@ export default function Header() {
                 {/* User icon and name */}
                 {!menuOpen && (
                     <button onClick={() => setMenuOpen(true)}
-                    className=' bg-gray-200 rounded-full hover:bg-gray-300 transition-colors p-2'>
+                    className=' bg-gray-200 rounded-full hover:bg-gray-300 transition-colors p-2 cursor-pointer'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
@@ -46,7 +46,7 @@ export default function Header() {
                         <div className="fixed top-6 right-6 w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-2xl">
                             <button
                                 onClick={() => setMenuOpen(false)}
-                                className="absolute top-4 right-4 text-white hover:text-gray-300"
+                                className="absolute top-4 right-4 text-white hover:text-gray-300 cursor-pointer"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
