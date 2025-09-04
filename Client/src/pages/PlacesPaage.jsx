@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import Perks from "./Perks"; // Assuming you have a Perks component for selecting perks
 import AccountNav from "../AccountNav";
+import { UserContext } from "../UserContext";
 
 
 export default function PlacesPage(){
     const [places, setPlaces] = useState([]);
+    const {user} = useContext(UserContext);
     const backendUrl = 'https://nestaway-server.onrender.com';
     const navigate = useNavigate();
     useEffect(() => {
@@ -22,7 +24,7 @@ export default function PlacesPage(){
 
     return(
             <div className="flex gap-8 mt-8">
-            <AccountNav />
+            <AccountNav userEmail={user.email}/>
             <div className="flex flex-col gap-4">
                 <div>
                     <Link to={'/account/places/new'} className=" bg-primary text-white py-2 px-4 rounded-full">Add new places</Link>

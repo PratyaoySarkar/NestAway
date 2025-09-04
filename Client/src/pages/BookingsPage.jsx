@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import AccountNav from "../AccountNav";
 import { useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import { differenceInCalendarDays } from "date-fns";
 import { Link } from "react-router-dom";
+import { UserContext } from "../UserContext";
 
 export default function BookingPage(){
     const [bookings, setBookings] = useState([]);
+    const { user } = useContext(UserContext);
     useEffect(() =>{
         axios.get('/bookings').then(response => {
             setBookings(response.data);
@@ -18,7 +20,7 @@ export default function BookingPage(){
 
     return (
         <div className="flex gap-8 mt-8">
-            <AccountNav />
+            <AccountNav userEmail={user.email}/>
             <div className="flex flex-col w-full">
                 {bookings?.length > 0 && bookings.map(booking =>{
                     return (
