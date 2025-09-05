@@ -31,7 +31,7 @@ export default function IndexPage() {
         case 'hasValue':
             const places = placesLoadable.contents;
             return (
-                <div className="mt-8 px-24 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:gap-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-4 sm:px-8">
                 {places.length > 0 && places.map(place => (
                     <Link to={'/places/'+place._id} className="group">
                         {place.photos?.[0] && (
