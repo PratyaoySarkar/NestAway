@@ -56,7 +56,16 @@ export default function PlaceGallery({place}){
                     )}
                 </div>
             </div>
-            <button onClick={() => setShowAllPhotos(true)} className="absolute bottom-2 right-2 bg-white rounded-lg px-2 py-1 font-semibold">See more...</button>
+            <button onClick={() => setShowAllPhotos(true)} className="idden absolute bottom-1 right-1 sm:bottom-2 sm:right-2 bg-white rounded-lg px-2 py-1 sm:font-semibold">See more...</button>
+            {/* Mobile centered button */}
+            <div className="sm:hidden flex justify-center mt-3">
+                <button 
+                    onClick={() => setShowAllPhotos(true)} 
+                    className="w-full max-w-xs bg-white rounded-lg font-semibold shadow px-4 py-2 text-base"
+                >
+                    See more photos
+                </button>
+            </div>
         </div>
     )
 }
