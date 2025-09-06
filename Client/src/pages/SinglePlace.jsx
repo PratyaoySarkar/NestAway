@@ -18,9 +18,9 @@ export default function SinglePlace(){
     if(!place) return '';
 
     return (
-        <div className="mt-8 mx-16 px-8 py-8">
-            <h1 className="text-3xl font-semibold">{place.title}</h1>
-            <a className="flex gap-1 font-semibold underline pt-2" target="_blank" href={'https://maps.google.com/?q='+place.address}>
+        <div className="mt-6 md:mt-8 mx-4 sm:mx-8 md:mx-16 px-2 sm:px-6 md:px-8 py-6 md:py-8">
+            <h1 className="text-2xl sm:text-3xl font-semibold leading-snug">{place.title}</h1>
+            <a className="flex items-center gap-2 font-semibold underline pt-3 text-sm sm:text-base" target="_blank" href={'https://maps.google.com/?q='+place.address}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -30,25 +30,25 @@ export default function SinglePlace(){
             <PlaceGallery place={place} />
             <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 mt-8">
                 <div>
-                    <div className="mb-2">
-                        <h2 className="font-semibold text-2xl">Description</h2>
+                    <div className="mb-4">
+                        <h2 className="font-semibold text-xl sm:text-2xl mb-2">Description</h2>
                         {place.description}
                     </div>
-                    <div className="font-semibold">
+                    <div className="font-semibold text-sm sm:text-base space-y-1">
                         Check in time: {place.checkIn}<br/>
                         Check out time: {place.checkOut}<br/>
                         Max guests allowed: {place.maxGuests}
                     </div>
                 </div>
-                <div>
+                <div className="lg:sticky lg:top-24">
                     <BookingWidget place={place}/>
                 </div>
             </div>
-            <div>
-                <h2 className="font-semibold text-2xl">Extra info</h2>
-            </div>
-            <div className="text-sm text-gray-700 leading-4 mb-4 mt-1">
-                {place.extraInfo}
+            <div className="mt-10">
+                <h2 className="font-semibold text-xl sm:text-2xl">Extra info</h2>
+                <p className="text-sm sm:text-base text-gray-700 leading-5 mt-2">
+                    {place.extraInfo}
+                </p>
             </div>
         </div>
     )
