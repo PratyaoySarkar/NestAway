@@ -47,34 +47,34 @@ export default function BookingWidget({place}){
 
     return (
         <div className="bg-gray-200 shadow p-4 rounded-2xl">
-            <div className="text-2xl text-center">Price: INR.{place.price} / night</div>
-            <div className="border rounded-2xl mt-4 bg-white">
-                <div className="flex">
-                    <div className="py-3 px-4 text-shadow-lg">
-                        <label htmlFor="">Check in: </label>
+            <div className="text-xl sm:text-2xl text-center font-semibold">Price: INR.{place.price} / night</div>
+            <div className="border rounded-2xl mt-4 bg-white overflow-hidden">
+                <div className="flex flex-col sm:flex-row">
+                    <div className="py-3 px-4 flex-1 text-shadow-lg">
+                        <label className="block text-sm font-medium mb-1">Check in: </label>
                         <input type="date" value={checkIn} onChange={ev => setCheckIn(ev.target.value)} />
                     </div>
-                    <div className="py-3 px-4 text-shadow-lg border-l">
-                        <label htmlFor="">Check out: </label>
+                    <div className="py-3 px-4 flex-1 border-t sm:border-t-0 text-shadow-lg sm:border-l">
+                        <label className="block text-sm font-medium mb-1">Check out: </label>
                         <input type="date" value={checkOut} onChange={ev => setCheckOut(ev.target.value)}/>
                     </div>
                 </div>
                 <div className="py-3 px-4 text-shadow-lg border-t">
-                    <label htmlFor="">Number of guests: </label>
+                    <label className="block text-sm font-medium mb-1">Number of guests: </label>
                     <input type="number" value={numOfGuests} onChange={ev => setNumOfGuests(ev.target.value)}/>
                 </div>
                 {numberOfDays > 0 && (
-                    <div className="py-3 px-4 text-shadow-lg border-t">
-                        <label>Your full name </label>
+                    <div className="py-3 px-4 text-shadow-lg border-t space-y-3">
+                        <label className="block text-sm font-medium mb-1">Your full name </label>
                         <input type="text" value={name} onChange={ev => setName(ev.target.value)}/>
-                        <label>Phone number </label>
+                        <label className="block text-sm font-medium mb-1">Phone number </label>
                         <input type="tel" value={phone} onChange={ev => setPhone(ev.target.value)}/>
                     </div>
                     
                 )}
             </div>
             
-            <button onClick={bookThePlace} className="primary w-full font-semibold mt-4">
+            <button onClick={bookThePlace} className="primary w-full font-semibold mt-4 py-3 rounded-2xl text-base sm:text-lg">
                 Book now at
                 
                 {numberOfDays > 0 && (
