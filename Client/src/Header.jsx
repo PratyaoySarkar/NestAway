@@ -6,11 +6,11 @@ export default function Header() {
     const { user } = useContext(UserContext); // Access user data from UserContext
     const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <header className='flex justify-between items-center px-6 py-6 shadow-md bg-white sticky top-0 z-50'>
+        <header className='flex justify-between items-center px-6 sm:px-6 py-4 shadow-md bg-white sticky top-0 z-50'>
             <Link to={'/'} className='flex items-center gap-2'>
-                <img src='/NestAwayLogo.png' className='size-15 object-contain' alt='NestAway Logo' />
+                <img src='/NestAwayLogo.png' className='w-10 h-10 sm:size-15 object-contain' alt='NestAway Logo' />
                 {/* The text will be hodden on mobile */}
-                <span className='font-bold text-xl text-primary hidden md:block'>nestAway</span>
+                <span className='font-bold text-lg sm:text-xl text-primary md:block'>nestAway</span>
             </Link>
             <div className='hidden sm:flex font-semibold border border-gray-300 rounded-full py-1 px-4 items-center gap-4 shadow-md hover:shadow-lg transition-all'>
                 <div>Anywhere</div>
@@ -43,7 +43,7 @@ export default function Header() {
                 {/* Sidebar */}
                 {menuOpen && (
                     <div>
-                        <div className="fixed top-6 right-6 w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-2xl">
+                        <div className="fixed top-0 right-0 w-3/4 sm:w-64 h-full bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-l-2xl transition-transform">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300 cursor-pointer"
@@ -53,7 +53,7 @@ export default function Header() {
 </svg>
 
                             </button>
-                            <div className="mt-6">
+                            <div className="mt-10">
                                 {user ? (
                                 <>
                                     <h2 className="text-lg font-semibold mb-4">
@@ -89,7 +89,7 @@ export default function Header() {
                             </div>
                         </div>
                         <div
-                            className="flex-1"
+                            className="fixed inset-0 bg-black bg-opacity-30"
                             onClick={() => setMenuOpen(false)}>
                         </div>
                     </div>
