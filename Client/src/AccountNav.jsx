@@ -36,13 +36,14 @@ export default function AccountNav({ userEmail }){
 
     return (
         <div className="relative">
-            <button className="lg: hidden p-3 focus:outlinr-none fixed top-10 left-4 z-60 bg-white rounded-full shadow-md" onClick={() => setMenuOpen(!menuOpen)}>
+            <button className="lg: hidden p-3 focus:outlinr-none fixed left-4 z-40 bg-white rounded-full shadow-md"
+            style={{ top: "4.5rem" }} onClick={() => setMenuOpen(!menuOpen)}>
                 {menuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
             <nav 
                 ref={sidebarRef}
                 className={`
-                    fixed top-10 left-0 h-full w-64 bg-white border-r border-gray-300 
+                    fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-300 
                     flex flex-col gap-4 p-6 shadow-lg transform transition-transform duration-300 ease-in-out
                     ${menuOpen ? "translate-x-0" : "-translate-x-full"}
                     lg:static lg:translate-x-0 lg:w-72 lg:h-auto lg:shadow-none
