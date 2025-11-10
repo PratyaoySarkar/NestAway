@@ -36,7 +36,7 @@ export default function AccountNav({ userEmail }){
 
     return (
         <div className="relative">
-            <button className="lg: hidden p-3 focus:outlinr-none fixed top-4 left-4 z-50 bg-white rounded-full shadow-md" onClick={() => setMenuOpen(!menuOpen)}>
+            <button className="lg: hidden p-3 focus:outlinr-none fixed top-4 left-4 z-60 bg-white rounded-full shadow-md" onClick={() => setMenuOpen(!menuOpen)}>
                 {menuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
             <nav 
