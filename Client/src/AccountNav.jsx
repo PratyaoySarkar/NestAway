@@ -15,6 +15,9 @@ export default function AccountNav({ userEmail }){
         if(type === subpage){
             classes += ' bg-primary text-white';
         }
+        else {
+            classes += " hover:bg-gray-200 transition";
+        }
         return classes;
     }
 //Close sidebar when clicking outside
@@ -39,10 +42,10 @@ export default function AccountNav({ userEmail }){
             <nav 
                 ref={sidebarRef}
                 className={`
-                    fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-300 
+                    fixed top-10 left-0 h-full w-64 bg-white border-r border-gray-300 
                     flex flex-col gap-4 p-6 shadow-lg transform transition-transform duration-300 ease-in-out
                     ${menuOpen ? "translate-x-0" : "-translate-x-full"}
-                    lg:static lg:translate-x-0 lg:w-72 lg:h-auto lg:border-none lg:shadow-none
+                    lg:static lg:translate-x-0 lg:w-72 lg:h-auto lg:shadow-none
                 `}>
                 <Link className={linkClasses('profile')} to={'/account'}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
