@@ -61,7 +61,7 @@ export default function PlaceGallery({place}){
             <div className="sm:hidden flex justify-center mt-3">
                 <button 
                     onClick={() => setShowAllPhotos(true)} 
-                    className="w-full max-w-xs bg-white rounded-lg font-semibold shadow px-4 py-2 text-base"
+                    className="w-full max-w-xs bg-white rounded-lg font-semibold shadow px-4 py-2 text-base cursor-pointer"
                 >
                     See more photos
                 </button>

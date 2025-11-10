@@ -74,7 +74,7 @@ export default function BookingWidget({place}){
                 )}
             </div>
             
-            <button onClick={bookThePlace} className="primary w-full font-semibold mt-4 py-3 rounded-2xl text-base sm:text-lg">
+            <button onClick={bookThePlace} className="primary w-full font-semibold mt-4 py-3 rounded-2xl text-base sm:text-lg cursor-pointer">
                 Book now at
                 
                 {numberOfDays > 0 && (
