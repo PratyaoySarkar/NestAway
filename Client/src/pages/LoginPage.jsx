@@ -21,7 +21,6 @@ export default function LoginPage(){
                 return;
             }
             setUser(userResponse.data);
-            alert('Login successful!');
             setRedirect(true);
             
         }catch(e){
