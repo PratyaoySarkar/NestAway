@@ -45,7 +45,6 @@ export default function LoginPage(){
                     <Link to={'/sign-up'} className="text-secondary font-medium">create account</Link>
                 </div>
             </form> 
-
         </div>
     )
 }
