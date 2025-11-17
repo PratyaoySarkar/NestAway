@@ -56,26 +56,30 @@ export default function Header() {
                             <div className="mt-10 right-0 flex flex-col gap-4">
                                 {user ? (
                                 <>
-                                    <h2 className="text-sm md:text-lg font-semibold mb-4">
+                                    <h2 className="text-sm sm:text-lg font-semibold mb-4">
                                     Welcome {user.name}
                                     </h2>
                                     <Link
                                     to="/account"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     My Profile
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     About
                                     </Link>
-                                    <button className="w-full rounded text-left text-sm md:text-2xl px-4 py-2 hover:bg-secondary">
+                                    <Link
+                                    to="/about"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
+                                    >
                                     Logout
-                                    </button>
+                                    </Link>
                                 </>
                                 ) : (
                                 <Link
