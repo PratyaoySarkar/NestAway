@@ -43,7 +43,7 @@ export default function Header() {
                 {/* Sidebar */}
                 {menuOpen && (
                     <div>
-                        <div className="fixed top-0 right-0 w-3/4 sm:w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-l-2xl transition-transform">
+                        <div className="fixed top-2 right-2 w-3/4 sm:w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-l-2xl transform transition-transform duration-300 ease-in-out">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300 cursor-pointer"
@@ -56,24 +56,24 @@ export default function Header() {
                             <div className="mt-10">
                                 {user ? (
                                 <>
-                                    <h2 className="text-lg font-semibold mb-4">
+                                    <h2 className="text-sm md:text-lg font-semibold mb-4">
                                     Welcome {user.name}
                                     </h2>
                                     <Link
                                     to="/account"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     My Profile
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     About
                                     </Link>
-                                    <button className="w-full rounded text-left px-4 py-2 hover:bg-secondary">
+                                    <button className="w-full rounded text-left text-sm md:text-2xl px-4 py-2 hover:bg-secondary">
                                     Logout
                                     </button>
                                 </>
@@ -81,7 +81,7 @@ export default function Header() {
                                 <Link
                                     to="/login"
                                     onClick={() => setMenuOpen(false)}
-                                    className="block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
                                 >
                                     Login
                                 </Link>
