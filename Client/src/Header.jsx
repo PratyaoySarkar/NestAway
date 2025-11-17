@@ -43,7 +43,7 @@ export default function Header() {
                 {/* Sidebar */}
                 {menuOpen && (
                     <div>
-                        <div className="fixed top-2 right-2 w-3/4 sm:w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-l-2xl transform transition-transform duration-300 ease-in-out">
+                        <div className="fixed top-2 right-2 sm:w-64 h-auto bg-primary text-white shadow-2xl z-50 flex flex-col p-6 rounded-l-2xl transform transition-transform duration-300 ease-in-out">
                             <button
                                 onClick={() => setMenuOpen(false)}
                                 className="absolute top-4 right-4 text-white hover:text-gray-300 cursor-pointer"
