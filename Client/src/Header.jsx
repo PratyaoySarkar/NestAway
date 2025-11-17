@@ -62,21 +62,21 @@ export default function Header() {
                                     <Link
                                     to="/account"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm font-semibold sm:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     My Profile
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm font-semibold sm:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     About
                                     </Link>
                                     <Link
                                     to="/about"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm sm:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm font-semibold sm:block px-4 py-2 rounded hover:bg-secondary"
                                     >
                                     Logout
                                     </Link>
@@ -85,7 +85,7 @@ export default function Header() {
                                 <Link
                                     to="/login"
                                     onClick={() => setMenuOpen(false)}
-                                    className="text-sm md:block px-4 py-2 rounded hover:bg-secondary"
+                                    className="text-sm font-semibold md:block px-4 py-2 rounded hover:bg-secondary"
                                 >
                                     Login
                                 </Link>

@@ -37,7 +37,7 @@ export default function AccountNav({ userEmail }){
 
     return (
         <div className="relative">
-            <button className="lg: hidden p-3 focus:outline-none fixed left-4 z-50 bg-white rounded-full shadow-md border border-gray-200"
+            <button className="lg:hidden p-3 focus:outline-none fixed left-4 z-51 bg-white rounded-full shadow-md border border-gray-200"
             style={{ top: headerOffset }} onClick={() => setMenuOpen(!menuOpen)}>
                 {menuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
@@ -48,7 +48,7 @@ export default function AccountNav({ userEmail }){
                     flex flex-col gap-4 p-6 shadow-lg transform transition-transform duration-300 ease-in-out
                     ${menuOpen ? "translate-x-0" : "-translate-x-full"}
                     lg:static lg:translate-x-0 lg:w-72 lg:h-auto lg:shadow-none 
-                    lg: bg-transparent lg:border-none lg:p-0 z-40
+                    lg:bg-transparent lg:border-none lg:p-0 z-40
                 `} style={{ top: window.innerWidth < 1024 ? headerOffset : '0',
                     height: `calc(100vh - ${headerOffset})` }} >
                 <Link className={linkClasses('profile')} to={'/account'}>
