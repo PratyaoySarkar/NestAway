@@ -53,7 +53,7 @@ export default function Header() {
 </svg>
 
                             </button>
-                            <div className="mt-10">
+                            <div className="mt-10 right-0 flex flex-col gap-4">
                                 {user ? (
                                 <>
                                     <h2 className="text-sm md:text-lg font-semibold mb-4">
